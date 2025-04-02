@@ -19,5 +19,12 @@
     <string name="error_no_internet">İnternet bağlantısı yok. Lütfen bağlantınızı kontrol edin.</string>
     <string name="error_server">Sunucu hatası. Lütfen daha sonra tekrar deneyin.</string>
     <string name="error_serialization">Veri dönüştürme hatası. Lütfen tekrar deneyin.</string>
-    <string name="error_remote_unknown">Bilinmeyen bir hata oluştu.</string>    clear_search
+    <string name="error_remote_unknown">Bilinmeyen bir hata oluştu.</string>
+    <string name="book_cover">Kitap Kapağı</string>
+    <string name="go_back">Geri</string>
+    <string name="rating">Rating</string>
+
+
+
+
 </resources>

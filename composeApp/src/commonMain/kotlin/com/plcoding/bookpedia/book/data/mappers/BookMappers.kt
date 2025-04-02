@@ -7,7 +7,7 @@ import com.plcoding.bookpedia.book.domain.Book
 // data model to domain model
 fun SearchedBookDto.toBook(): Book {
     return Book(
-        id = id,
+        id = id.substringAfterLast("/"), // en son /'dan sonraki kısmı alıyor
         title = title,
         imageUrl = if (coverKey != null){
             "https://covers.openlibrary.org/b/olid/${coverKey}-L.jpg"

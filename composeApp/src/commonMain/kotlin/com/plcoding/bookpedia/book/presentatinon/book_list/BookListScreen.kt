@@ -50,7 +50,6 @@ import com.plcoding.bookpedia.core.presentation.DesertWhite
 import com.plcoding.bookpedia.core.presentation.SandYellow
 import kotlinx.coroutines.launch
 import org.jetbrains.compose.resources.stringResource
-import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
 
@@ -66,7 +65,10 @@ fun  BookListScreenRoot(
         state = state,
         onAction = {  action ->
             when(action){
-                is BookListAction.OnBookClick -> onBookClick(action.book) // Başka ekranla ilgili diye burada
+                is BookListAction.OnBookClick -> {
+
+                    onBookClick(action.book)
+                } // Başka ekranla ilgili diye burada
                 else -> Unit
             }
             viewModel.onAction(action) // bu ekran ile ilgili olanlar burada
