@@ -12,15 +12,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.ArrowBack
-import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Favorite
-import androidx.compose.material.icons.outlined.Favorite
+import androidx.compose.material.icons.outlined.FavoriteBorder
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ElevatedCard
@@ -53,7 +50,6 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun BlurredImageBackground(
     imageUrl: String?,
-    modifier: Modifier = Modifier,
     isFavorite: Boolean = false,
     onFavoriteClick: () -> Unit = {},
     onBackClick: () -> Unit = {},
@@ -162,9 +158,9 @@ fun BlurredImageBackground(
                                         )
                                 ){
                                     Icon(
-                                        imageVector = if (isFavorite) Icons.Outlined.Favorite else Icons.Filled.Favorite,
+                                        imageVector = if (isFavorite) Icons.Filled.Favorite else Icons.Outlined.FavoriteBorder,
                                         contentDescription = if(isFavorite) "Remove from favorites" else "Add to favorites",
-                                        tint = Color.Red,
+                                        tint = Color.Red
                                     )
                                 }
                             }

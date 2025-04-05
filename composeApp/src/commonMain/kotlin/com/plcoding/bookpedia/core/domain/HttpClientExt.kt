@@ -13,7 +13,7 @@ import kotlin.coroutines.coroutineContext
 suspend inline fun <reified T> safeCall(
     execute : () -> HttpResponse
 ): Result<T, DataError.Remote> {
-    val response = try {
+    val response: HttpResponse = try {
         execute() // HTP RESPONSE OLUSTUR APIDEN GELEN RAW BILGI
     }catch (e: SocketTimeoutException){
         return Result.Error(DataError.Remote.REQUEST_TIMEOUT)

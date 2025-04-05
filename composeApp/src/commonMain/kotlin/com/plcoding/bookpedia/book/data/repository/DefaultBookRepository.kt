@@ -27,5 +27,16 @@ class DefaultBookRepository(
             // ve Donus olarak Result<List<Book>> doonuyor egerkı .searchBooks(query) Succes ise
             }
     }
+
+    override suspend fun getBookDescription(bookId: String): Result<String, DataError.Remote> {
+        return remoteBookDataSource.getBookDetails(bookId)
+            .map { bookWorkDto ->
+                bookWorkDto.description
+            }
+
+
+    }
+
+
 }
 

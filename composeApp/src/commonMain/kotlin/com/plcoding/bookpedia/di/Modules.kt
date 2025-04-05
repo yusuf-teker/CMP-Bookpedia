@@ -40,5 +40,5 @@ val sharedModule = module {
 
     viewModel { SelectedBookViewModel() }
 
-    viewModel { BookDetailViewModel() }
+    viewModel { BookDetailViewModel(get(), get()) }
 }

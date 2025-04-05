@@ -7,4 +7,6 @@ interface BookRepository {
     // Presentationda data packageından birşey kullanmamak için interface kullandık
     // Viewmodelde bu Interface parametre olarak verilecek
     suspend fun searchBooks(query: String): Result<List<Book>, DataError.Remote>
+
+    suspend fun getBookDescription(bookId: String): Result<String, DataError> // Remote dışında local db'dende çekicez
 }

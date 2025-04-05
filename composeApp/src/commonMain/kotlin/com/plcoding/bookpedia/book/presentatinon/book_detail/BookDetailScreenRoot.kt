@@ -74,7 +74,6 @@ fun BookDetailScreen(
         onBackClick = {
             onAction(BookDetailAction.OnBackClick)
         },
-        modifier = Modifier.fillMaxSize()
     ){
         if (state.book != null) {
             Column(

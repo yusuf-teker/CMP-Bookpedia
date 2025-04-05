@@ -1,5 +1,6 @@
 package com.plcoding.bookpedia.book.data.network
 
+import com.plcoding.bookpedia.book.data.dto.BookWorkDto
 import com.plcoding.bookpedia.book.data.dto.SearchResponseDto
 import com.plcoding.bookpedia.core.domain.DataError
 import com.plcoding.bookpedia.core.domain.Result
@@ -21,7 +22,7 @@ class KtorRemoteBookDataSource(
         resultLimit: Int?,
     ): Result< SearchResponseDto, DataError.Remote> { // apiden gelen data modeli sonradan domaindaki modele dönüstürülmed
 
-        return safeCall { // safe call transform response to Result
+        return safeCall<SearchResponseDto> { // safe call transform response to Result
             httpClient.get(urlString = "$BASE_URL/search.json"){ // get raw Response from api
                 // api cagrısına ekstra özellik ekleme
                 parameter("q", query)
@@ -31,6 +32,12 @@ class KtorRemoteBookDataSource(
             }
         }
 
+    }
+
+    override suspend fun getBookDetails(bookId: String): Result<BookWorkDto, DataError.Remote> {
+        return safeCall<BookWorkDto>{
+            httpClient.get(urlString = "$BASE_URL/works/$bookId.json")
+        }
     }
 
 
