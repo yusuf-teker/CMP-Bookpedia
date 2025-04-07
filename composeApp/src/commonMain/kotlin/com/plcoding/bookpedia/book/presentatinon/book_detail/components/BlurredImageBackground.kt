@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
@@ -43,6 +44,7 @@ import cmp_bookpedia.composeapp.generated.resources.go_back
 import coil3.compose.rememberAsyncImagePainter
 import com.plcoding.bookpedia.core.presentation.DarkBlue
 import com.plcoding.bookpedia.core.presentation.DesertWhite
+import com.plcoding.bookpedia.core.presentation.PulseAnimation
 import com.plcoding.bookpedia.core.presentation.SandYellow
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -123,9 +125,6 @@ fun BlurredImageBackground(
                 modifier = Modifier.height(370.dp)
                     .aspectRatio(2/3f),
                 shape = RoundedCornerShape(8.dp),
-                colors = CardDefaults.elevatedCardColors(
-                    containerColor = Color.Transparent
-                ),
                 elevation = CardDefaults.elevatedCardElevation(
                     defaultElevation = 15.dp
                 )
@@ -135,7 +134,11 @@ fun BlurredImageBackground(
                     modifier = Modifier.fillMaxSize()
                 ){ result ->
                     when(result){
-                        null -> CircularProgressIndicator()
+                        null -> {
+                            Box {
+                                PulseAnimation(modifier = Modifier.size(60.dp).align(Alignment.Center))
+                            }
+                        }
                         else -> {
                             Box {
                                 Image(
