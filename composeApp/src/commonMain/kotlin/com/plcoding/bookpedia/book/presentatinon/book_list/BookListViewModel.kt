@@ -32,22 +32,8 @@ class BookListViewModel(
 
     private var searchJob: Job? = null
 
+    private var observeFavoriteJob: Job? = null
 
-    val bookList = (1..100).map {
-        Book(
-            id = it.toString(),
-            title = "Kotlin ${it.toString()}",
-            authors = listOf("JetBrains"),
-            averageRating = 4.5,
-            imageUrl = "https://picsum.photos/200",
-            description = "Kotlin is a programming language",
-            languages = listOf("English"),
-            firstPublishedYear = "2010",
-            numEditions = 10,
-            numPages = 100,
-            ratingCount = 100
-        )
-    }
 
     private val _state = MutableStateFlow(BookListState())
     val state: StateFlow<BookListState> = _state
@@ -55,6 +41,7 @@ class BookListViewModel(
             if (cachedBooks.isEmpty()){
                 observeSearchQuery()
             }
+            observeFavoriteBooks()
         }.stateIn( // Flowu(Cold) StateFlowa(Hot) donustur
             viewModelScope, //  bu state viewModele baglandı viewmodel clear olunca state e clear olacak
             SharingStarted.WhileSubscribed(5000L), // 5 saniye dinleyici olmazsa otomatik kapanacak
@@ -134,7 +121,19 @@ class BookListViewModel(
                 }
         }
 
+    // local database deki favori listeyi izle
+    private fun observeFavoriteBooks(){
 
+
+        observeFavoriteJob = bookRepository.getFavoriteBooks()
+            .onEach { favoriteBooks ->
+                _state.update {
+                    it.copy(
+                        favoriteBooks = favoriteBooks
+                    )
+                }
+            }.launchIn(viewModelScope)
+    }
 
 
 }
