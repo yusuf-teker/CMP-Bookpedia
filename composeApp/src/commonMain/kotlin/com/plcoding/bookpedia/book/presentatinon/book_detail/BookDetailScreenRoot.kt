@@ -98,7 +98,8 @@ fun BookDetailScreen(
                 ) {
                     state.book.averageRating?.let { rating ->
                         TitledContent(
-                            title = stringResource(Res.string.rating)
+                            title = stringResource(Res.string.rating),
+                            modifier = Modifier.padding(end = 16.dp)
                         ){
                             BookChip {
 
@@ -114,7 +115,6 @@ fun BookDetailScreen(
                             }
                         }
                     }
-                    Spacer(modifier = Modifier.width(16.dp))
 
                     state.book.numPages?.let { pages ->
                         TitledContent(
